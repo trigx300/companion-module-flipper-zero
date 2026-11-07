@@ -1,0 +1,9 @@
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+.flipper-runtime-state.json
+flipper_app/.vscode/
+release/
+*.log
+

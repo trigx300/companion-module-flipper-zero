@@ -1,0 +1,17 @@
+App(
+    appid="companion_remote",
+    name="Bitfocus Companion",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="companion_remote_app",
+    requires=[
+        "gui",
+        "bt",
+        "notification",
+    ],
+    stack_size=2 * 1024,
+    fap_category="Bluetooth",
+    fap_description="Wireless Bluetooth button surface for Bitfocus Companion (Direct & Cursor modes)",
+    fap_author="Antigravity",
+    fap_version="1.0",
+)
+

@@ -1,0 +1,40 @@
+{
+	"id": "flipper-zero",
+	"name": "flipper-zero",
+	"shortname": "flipper",
+	"description": "Use Flipper Zero as a Bluetooth / Serial button surface and trigger device for Bitfocus Companion",
+	"version": "1.0.0",
+	"isPrerelease": false,
+	"license": "MIT",
+	"repository": "git+https://github.com/trigx300/companion-module-flipper-zero.git",
+	"bugs": "https://github.com/trigx300/companion-module-flipper-zero/issues",
+	"maintainers": [
+		{
+			"name": "David Giardinelli",
+			"email": "trigx300@gmail.com"
+		}
+	],
+	"runtime": {
+		"type": "node22",
+		"api": "nodejs-ipc",
+		"apiVersion": "1.14.0",
+		"entrypoint": "../dist/main.js",
+		"permissions": {
+			"native-addons": true,
+			"child-process": true
+		}
+	},
+	"legacyIds": [],
+	"manufacturer": "Flipper Devices",
+	"products": [
+		"Flipper Zero"
+	],
+	"keywords": [
+		"Flipper",
+		"Bluetooth",
+		"BLE",
+		"Surface",
+		"Controller",
+		"Remote"
+	]
+}
