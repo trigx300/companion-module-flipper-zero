@@ -86,8 +86,10 @@ class FlipperZeroInstance extends base_1.InstanceBase {
     }
     async init(config) {
         this.config = config;
-        if (!this.config.companionHost || this.config.companionHost === '10.101.10.100') {
-            this.config.companionHost = 'auto';
+        const rawHost = (this.config.companionHost || '').trim().toLowerCase();
+        if (!rawHost || rawHost === 'auto' || rawHost === '10.101.10.100') {
+            this.config.companionHost = (0, config_1.DetectLocalIpAddress)();
+            this.saveConfig(this.config);
         }
         this.loadCachedState(config);
         this.setActionDefinitions((0, actions_1.GetActions)(this));
@@ -102,6 +104,11 @@ class FlipperZeroInstance extends base_1.InstanceBase {
         await this.closeConnection();
     }
     async configUpdated(config) {
+        const rawHost = (config.companionHost || '').trim().toLowerCase();
+        if (!rawHost || rawHost === 'auto') {
+            config.companionHost = (0, config_1.DetectLocalIpAddress)();
+            this.saveConfig(config);
+        }
         this.config = config;
         await this.setupConnection();
     }

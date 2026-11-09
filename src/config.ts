@@ -114,9 +114,9 @@ export function GetConfigFields(): SomeCompanionConfigField[] {
 		{
 			type: 'textinput',
 			id: 'companionHost',
-			label: `Companion Host IP (Leave blank or "auto" — Detected: ${DetectLocalIpAddress()})`,
+			label: `Companion Host IP (Auto-detected: ${DetectLocalIpAddress()} — edit to override)`,
 			width: 6,
-			default: 'auto',
+			default: DetectLocalIpAddress(),
 			isVisible: (options) => !!options.autoTriggerButtons,
 		},
 		{

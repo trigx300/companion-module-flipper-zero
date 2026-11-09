@@ -101,8 +101,10 @@ export class FlipperZeroInstance extends InstanceBase<FlipperConfig> {
 
 	async init(config: FlipperConfig): Promise<void> {
 		this.config = config
-		if (!this.config.companionHost || this.config.companionHost === '10.101.10.100') {
-			this.config.companionHost = 'auto'
+		const rawHost = (this.config.companionHost || '').trim().toLowerCase()
+		if (!rawHost || rawHost === 'auto' || rawHost === '10.101.10.100') {
+			this.config.companionHost = DetectLocalIpAddress()
+			this.saveConfig(this.config)
 		}
 		this.loadCachedState(config)
 
@@ -122,6 +124,11 @@ export class FlipperZeroInstance extends InstanceBase<FlipperConfig> {
 	}
 
 	async configUpdated(config: FlipperConfig): Promise<void> {
+		const rawHost = (config.companionHost || '').trim().toLowerCase()
+		if (!rawHost || rawHost === 'auto') {
+			config.companionHost = DetectLocalIpAddress()
+			this.saveConfig(config)
+		}
 		this.config = config
 		await this.setupConnection()
 	}
